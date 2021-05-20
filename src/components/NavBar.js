@@ -1,28 +1,16 @@
 import { Fragment } from 'react'
+import { Link } from 'react-router-dom'
 import { Dialog, Transition } from '@headlessui/react'
-import {
-  CalendarIcon,
-  ChartBarIcon,
-  FolderIcon,
-  HomeIcon,
-  InboxIcon,
-  UsersIcon,
-  XIcon
-} from '@heroicons/react/outline'
+import { XIcon } from '@heroicons/react/outline'
 
 const NAVIGATION = [
-  { name: 'Dashboard', href: '#', icon: HomeIcon, current: true },
-  { name: 'Fade', href: '/fade', icon: UsersIcon, current: false },
-  { name: 'Projects', href: '#', icon: FolderIcon, current: false },
-  { name: 'Calendar', href: '#', icon: CalendarIcon, current: false },
-  { name: 'Documents', href: '#', icon: InboxIcon, current: false },
-  { name: 'Reports', href: '#', icon: ChartBarIcon, current: false }
+  { name: 'Home', href: '/', current: true },
+  { name: 'Fade', href: '/fade', current: false }
+//   { name: 'Projects', href: '#', current: false },
+//   { name: 'Calendar', href: '#', current: false },
+//   { name: 'Documents', href: '#', current: false },
+//   { name: 'Reports', href: '#', current: false }
 ]
-// const userNavigation = [
-//   { name: 'Your Profile', href: '#' },
-//   { name: 'Settings', href: '#' },
-//   { name: 'Sign out', href: '#' }
-// ]
 
 function classNames (...classes) {
   return classes.filter(Boolean).join(' ')
@@ -89,23 +77,16 @@ export default function NavBar ({ sidebarOpen, setSidebarOpen }) {
               <div className='mt-5 flex-1 h-0 overflow-y-auto'>
                 <nav className='px-2 space-y-1'>
                   {NAVIGATION.map((item) => (
-                    <a
+                    <Link
                       key={item.name}
-                      href={item.href}
+                      to={item.href}
                       className={classNames(
                         item.current ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
                         'group flex items-center px-2 py-2 text-base font-medium rounded-md'
                       )}
                     >
-                      <item.icon
-                        className={classNames(
-                          item.current ? 'text-gray-300' : 'text-gray-400 group-hover:text-gray-300',
-                          'mr-4 flex-shrink-0 h-6 w-6'
-                        )}
-                        aria-hidden='true'
-                      />
                       {item.name}
-                    </a>
+                    </Link>
                   ))}
                 </nav>
               </div>
@@ -137,13 +118,6 @@ export default function NavBar ({ sidebarOpen, setSidebarOpen }) {
                       'group flex items-center px-2 py-2 text-sm font-medium rounded-md'
                     )}
                   >
-                    <item.icon
-                      className={classNames(
-                        item.current ? 'text-gray-300' : 'text-gray-400 group-hover:text-gray-300',
-                        'mr-3 flex-shrink-0 h-6 w-6'
-                      )}
-                      aria-hidden='true'
-                    />
                     {item.name}
                   </a>
                 ))}

@@ -1,5 +1,4 @@
 import { Fragment } from 'react'
-import { SearchIcon } from '@heroicons/react/solid'
 
 const Header = () => {
   return (
