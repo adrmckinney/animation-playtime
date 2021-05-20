@@ -1,12 +1,17 @@
 import { useState } from 'react'
 import { MenuAlt2Icon } from '@heroicons/react/outline'
 import NavBar from './NavBar'
-import Header from './Header'
+import Controls from './Controls'
 import CentralContainer from './CentralContainer'
 import SideContainer from './SideContainer'
 
 export default function Main () {
   const [sidebarOpen, setSidebarOpen] = useState(false)
+  const [isAnimatingBtn, setIsAnimatingBtn] = useState(false)
+
+  const handleToggleBtn = () => {
+    setIsAnimatingBtn(!isAnimatingBtn)
+  }
 
   return (
     <div className='h-screen flex overflow-hidden bg-gray-100'>
@@ -21,10 +26,10 @@ export default function Main () {
             <span className='sr-only'>Open sidebar</span>
             <MenuAlt2Icon className='h-6 w-6' aria-hidden='true' />
           </button>
-          <Header />
+          <Controls handleToggleBtn={handleToggleBtn} />
         </div>
         <div className='flex-1 relative z-0 flex overflow-hidden'>
-          <CentralContainer />
+          <CentralContainer isAnimatingBtn={isAnimatingBtn} />
           <SideContainer />
         </div>
       </div>

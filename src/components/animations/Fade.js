@@ -1,19 +1,12 @@
 import { Transition } from '@headlessui/react'
-import { useState } from 'react'
+import ImageCards from '../ImageCards'
 
-const FadeTailwind = () => {
-  const [isShowing, setIsShowing] = useState(false)
-  console.log('isShowing', isShowing)
+const Fade = ({ isAnimatingBtn }) => {
   return (
     <>
-      <span className='flex flex-col justify-evenly h-1/2 w-1/2 border-2 border-black'>
-        <button
-          className='bg-green-500 w-1/4 self-center'
-          onClick={() => setIsShowing(!isShowing)}
-        >Toggle Fade
-        </button>
+      <span className='h-1/2 w-1/2 border-2 border-black flex justify-center items-center'>
         <Transition
-          show={isShowing}
+          show={isAnimatingBtn}
           enter='transition-opacity duration-500'
           enterFrom='opacity-0'
           enterTo='opacity-100'
@@ -22,16 +15,20 @@ const FadeTailwind = () => {
           leaveTo='opacity-0'
           className='flex justify-center'
         >
-          <div className='bg-blue-500 w-1/2 min-h-full'>
+          <ImageCards />
+          {/* <div
+            data-testid='card'
+            className='bg-blue-500 w-1/2 min-h-full'
+          >
             <div className='py-2 px-3'>This card should fade in and fade out on btn click</div>
             <span>
               <div>Child element inside card</div>
             </span>
-          </div>
+          </div> */}
         </Transition>
       </span>
     </>
   )
 }
 
-export default FadeTailwind
+export default Fade

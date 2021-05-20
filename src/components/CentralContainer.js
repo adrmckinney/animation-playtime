@@ -1,7 +1,7 @@
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
-import FadeTailwind from './FadeTailwind'
+import Fade from './animations/Fade'
 
-const CentralContainer = () => {
+const CentralContainer = ({ isAnimatingBtn }) => {
   return (
     <>
       <main className='flex-1 relative z-0 overflow-y-auto focus:outline-none'>
@@ -11,7 +11,7 @@ const CentralContainer = () => {
             <Router>
               <Switch>
                 <Route path='/fade'>
-                  <FadeTailwind />
+                  <Fade isAnimatingBtn={isAnimatingBtn} />
                 </Route>
               </Switch>
             </Router>
