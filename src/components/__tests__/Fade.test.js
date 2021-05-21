@@ -1,6 +1,5 @@
 import { render, waitForElementToBeRemoved, screen, fireEvent } from '@testing-library/react'
 import Fade from '../animations/Fade'
-import Main from '../Main'
 
 describe('<Fade />', () => {
   const currentListItem = { appear: true, idx: 0 }
