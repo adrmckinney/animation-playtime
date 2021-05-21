@@ -1,22 +1,33 @@
 import { Fragment } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import { Dialog, Transition } from '@headlessui/react'
 import { XIcon } from '@heroicons/react/outline'
 
 const NAVIGATION = [
   { name: 'Home', href: '/', current: true },
-  { name: 'Fade', href: '/fade', current: false }
-//   { name: 'Projects', href: '#', current: false },
-//   { name: 'Calendar', href: '#', current: false },
-//   { name: 'Documents', href: '#', current: false },
-//   { name: 'Reports', href: '#', current: false }
+  { name: 'Fade', href: '/fade', current: false },
+  { name: 'Fade Timed Reset', href: '/fade-reset', current: false }
 ]
 
 function classNames (...classes) {
   return classes.filter(Boolean).join(' ')
 }
 
-export default function NavBar ({ sidebarOpen, setSidebarOpen }) {
+export default function NavBar ({ sidebarOpen, setSidebarOpen, matchNavBtnIdxToDescIdx }) {
+//   const path = useLocation()
+  const changeCurrentStatus = (name) => {
+    NAVIGATION.forEach(item => {
+      if (item.current === true) {
+        item.current = false
+      }
+      if (item.name === name) {
+        item.current = true
+        const idxOfChanged = NAVIGATION.indexOf(item)
+        matchNavBtnIdxToDescIdx(idxOfChanged)
+      }
+    })
+  }
+
   return (
     <>
       <Transition.Root show={sidebarOpen} as={Fragment}>
@@ -68,11 +79,8 @@ export default function NavBar ({ sidebarOpen, setSidebarOpen }) {
                 </div>
               </Transition.Child>
               <div className='flex-shrink-0 flex items-center px-4'>
-                <img
-                  className='h-8 w-auto'
-                  src='https://tailwindui.com/img/logos/workflow-logo-indigo-500-mark-white-text.svg'
-                  alt='Workflow'
-                />
+                {/* placeholder for cool animated decoration */}
+                <h1 className='text-white'>Animation PlayTime</h1>
               </div>
               <div className='mt-5 flex-1 h-0 overflow-y-auto'>
                 <nav className='px-2 space-y-1'>
@@ -84,6 +92,7 @@ export default function NavBar ({ sidebarOpen, setSidebarOpen }) {
                         item.current ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
                         'group flex items-center px-2 py-2 text-base font-medium rounded-md'
                       )}
+                      onClick={() => changeCurrentStatus(item.name)}
                     >
                       {item.name}
                     </Link>
@@ -110,16 +119,17 @@ export default function NavBar ({ sidebarOpen, setSidebarOpen }) {
             <div className='flex-1 flex flex-col overflow-y-auto'>
               <nav className='flex-1 px-2 py-4 bg-gray-800 space-y-1'>
                 {NAVIGATION.map((item) => (
-                  <a
+                  <Link
                     key={item.name}
-                    href={item.href}
+                    to={item.href}
                     className={classNames(
                       item.current ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
                       'group flex items-center px-2 py-2 text-sm font-medium rounded-md'
                     )}
+                    onClick={() => changeCurrentStatus(item.name)}
                   >
                     {item.name}
-                  </a>
+                  </Link>
                 ))}
               </nav>
             </div>
