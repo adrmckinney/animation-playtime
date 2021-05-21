@@ -10,6 +10,10 @@ const DESCRIPTIONS = [
   {
     title: 'Fade with Timed Reset',
     body: 'This animation is set to reset after a certain amount of time. On clicking the animation button above, the card will fade out and after a set duration the card will fade back in.'
+  },
+  {
+    title: 'Fade Carousel',
+    body: 'This animation contains multiple cards that will fade into view one at a time on button click.'
   }
 ]
 

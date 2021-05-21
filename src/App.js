@@ -9,7 +9,7 @@ import Fade from './components/animations/Fade'
 import FadeReset from './components/animations/FadeReset'
 import Home from './components/Home'
 import SideContainer from './components/SideContainer'
-// import Main from './components/Main'
+import FadeCarousel from './components/animations/FadeCarousel'
 
 function App () {
   const [sidebarOpen, setSidebarOpen] = useState(false)
@@ -67,6 +67,9 @@ function App () {
                       </Route>
                       <Route path='/fade-reset'>
                         <FadeReset isAnimatingBtn={isAnimatingBtn} currentListItem={currentListItem} listType={listType} />
+                      </Route>
+                      <Route path='/fade-carousel'>
+                        <FadeCarousel isAnimatingBtn={isAnimatingBtn} currentListItem={currentListItem} listType={listType} />
                       </Route>
                       <Route path='/'>
                         <Home />

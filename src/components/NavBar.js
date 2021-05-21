@@ -1,12 +1,13 @@
 import { Fragment } from 'react'
-import { Link, useLocation } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { Dialog, Transition } from '@headlessui/react'
 import { XIcon } from '@heroicons/react/outline'
 
 const NAVIGATION = [
   { name: 'Home', href: '/', current: true },
   { name: 'Fade', href: '/fade', current: false },
-  { name: 'Fade Timed Reset', href: '/fade-reset', current: false }
+  { name: 'Fade Timed Reset', href: '/fade-reset', current: false },
+  { name: 'Fade Carousel', href: '/fade-carousel', current: false }
 ]
 
 function classNames (...classes) {
@@ -14,7 +15,6 @@ function classNames (...classes) {
 }
 
 export default function NavBar ({ sidebarOpen, setSidebarOpen, matchNavBtnIdxToDescIdx }) {
-//   const path = useLocation()
   const changeCurrentStatus = (name) => {
     NAVIGATION.forEach(item => {
       if (item.current === true) {

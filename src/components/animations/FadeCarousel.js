@@ -2,7 +2,7 @@ import { Transition } from '@headlessui/react'
 import ImageCards from '../cards/ImageCards'
 import InfoCards from '../cards/InfoCards'
 
-export default function FadeReset ({ isAnimatingBtn, currentListItem, listType }) {
+export default function FadeCarousel ({ isAnimatingBtn, currentListItem, listType }) {
   return (
     <div className='h-1/2 w-1/2 flex justify-center items-center'>
       <Transition
